@@ -2,7 +2,7 @@
  *  Author: lijunhong
  *  Date: 2022-09-01 00:44:29
  *  Email: lijunhong@fengmap.com
- *  LastEditTime: 2022-09-01 23:09:56
+ *  LastEditTime: 2022-09-01 23:31:11
  *  LastEditors: lijunhong
  *  LastEditorsEmail: lijunhong@fengmap.com
  *  Description:app文件
@@ -13,6 +13,7 @@ const KoaBody = require("koa-body");
 const userRouter = require("../router/user.route");
 
 const app = new Koa();
+
 app.use(KoaBody());
 
 app.use(userRouter.routes());
