@@ -23,13 +23,13 @@ const seq = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PWD, {
   dialect: "mysql",
 });
 
-seq
-  .authenticate()
-  .then(() => {
-    console.log("链接成功");
-  })
-  .catch((err) => {
-    console.log("链接失败", err);
-  });
+// seq
+//   .authenticate()
+//   .then(() => {
+//     console.log("链接成功");
+//   })
+//   .catch((err) => {
+//     console.log("链接失败", err);
+//   });
 
 module.exports = seq;
