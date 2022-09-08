@@ -8,6 +8,7 @@
  *  Description:
  *  Copyright: Copyright 2014 - 2022, FengMap, Ltd. All rights reserved.
  */
+
 module.exports = {
   userFormatError: {
     code: "10001",

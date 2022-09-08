@@ -2,7 +2,7 @@
  *  Author: lijunhong
  *  Date: 2022-09-01 23:14:34
  *  Email: lijunhong@fengmap.com
- *  LastEditTime: 2022-09-05 22:42:17
+ *  LastEditTime: 2022-09-05 23:21:34
  *  LastEditors: lijunhong
  *  LastEditorsEmail: lijunhong@fengmap.com
  *  Description:
@@ -16,7 +16,7 @@ class UserService {
       user_name,
       password,
     });
-    console.log(aaa);
+
     return res.dataValues;
   }
 

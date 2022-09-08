@@ -2,12 +2,13 @@
  *  Author: lijunhong
  *  Date: 2022-09-05 21:33:20
  *  Email: lijunhong@fengmap.com
- *  LastEditTime: 2022-09-05 22:50:03
+ *  LastEditTime: 2022-09-05 23:31:25
  *  LastEditors: lijunhong
  *  LastEditorsEmail: lijunhong@fengmap.com
  *  Description: 错误处理中间件
  *  Copyright: Copyright 2014 - 2022, FengMap, Ltd. All rights reserved.
  */
+const bcrypt = require("bcryptjs");
 const { getUserInfo } = require("../service/user.service");
 const {
   userFormatError,
@@ -44,4 +45,13 @@ const verifyUser = async (ctx, next) => {
   await next();
 };
 
-module.exports = { userValidator, verifyUser };
+const cryptPassword = async (ctx, next) => {
+  const { password } = ctx.request.body;
+
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(password, salt);
+  ctx.request.body.password = hash;
+  await next();
+};
+
+module.exports = { userValidator, verifyUser, cryptPassword };
