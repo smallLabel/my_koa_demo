@@ -2,7 +2,7 @@
  *  Author: lijunhong
  *  Date: 2022-09-01 23:14:34
  *  Email: lijunhong@fengmap.com
- *  LastEditTime: 2022-09-05 23:21:34
+ *  LastEditTime: 2022-09-12 23:44:49
  *  LastEditors: lijunhong
  *  LastEditorsEmail: lijunhong@fengmap.com
  *  Description:
@@ -27,7 +27,14 @@ class UserService {
     is_admin && Object.assign(whereOpt, { is_admin });
 
     const res = await User.findOne({
-      attributes: ["id", "user_name", "is_admin"],
+      attributes: [
+        "id",
+        "user_name",
+        "is_admin",
+        "password",
+        "createdAt",
+        "updatedAt",
+      ],
       where: whereOpt,
     });
     return res?.dataValues ?? null;

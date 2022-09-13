@@ -2,7 +2,7 @@
  *  Author: lijunhong
  *  Date: 2022-09-05 21:33:20
  *  Email: lijunhong@fengmap.com
- *  LastEditTime: 2022-09-05 23:31:25
+ *  LastEditTime: 2022-09-12 23:43:41
  *  LastEditors: lijunhong
  *  LastEditorsEmail: lijunhong@fengmap.com
  *  Description: 错误处理中间件
@@ -14,6 +14,9 @@ const {
   userFormatError,
   userAlreadyExisted,
   userRegisterError,
+  userDoesNotExist,
+  userLoginError,
+  invalidPassword,
 } = require("../constant/err.type");
 const userValidator = async (ctx, next) => {
   const { user_name, password } = ctx.request.body;
@@ -53,5 +56,26 @@ const cryptPassword = async (ctx, next) => {
   ctx.request.body.password = hash;
   await next();
 };
+const verifyLogin = async (ctx, next) => {
+  const { user_name, password } = ctx.request.body;
+  try {
+    const res = await getUserInfo({ user_name });
+    if (!res) {
+      console.error("用户不存在", user_name);
+      ctx.app.emit("error", userDoesNotExist, ctx);
+      return;
+    }
+    console.log(res);
+    if (!bcrypt.compareSync(password, res.password)) {
+      ctx.app.emit("error", invalidPassword, ctx);
+      return;
+    }
+  } catch (error) {
+    console.error("error", error);
+    ctx.app.emit("error", userLoginError, ctx);
+    return;
+  }
 
-module.exports = { userValidator, verifyUser, cryptPassword };
+  await next();
+};
+module.exports = { userValidator, verifyUser, cryptPassword, verifyLogin };
