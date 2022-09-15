@@ -2,7 +2,7 @@
  *  Author: lijunhong
  *  Date: 2022-09-05 22:11:30
  *  Email: lijunhong@fengmap.com
- *  LastEditTime: 2022-09-12 23:18:44
+ *  LastEditTime: 2022-09-15 11:27:38
  *  LastEditors: lijunhong
  *  LastEditorsEmail: lijunhong@fengmap.com
  *  Description:
@@ -38,6 +38,22 @@ module.exports = {
   invalidPassword: {
     code: "10006",
     message: "密码不匹配",
+    result: "",
+  },
+
+  tokenExpiredError: {
+    code: "10100",
+    message: "token已过期",
+    result: "",
+  },
+  tokenInvalidError: {
+    code: "10101",
+    message: "无效的token",
+    result: "",
+  },
+  changePasswordError: {
+    code: "10102",
+    message: "修改密码失败",
     result: "",
   },
 };

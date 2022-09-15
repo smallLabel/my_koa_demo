@@ -2,7 +2,7 @@
  *  Author: lijunhong
  *  Date: 2022-09-01 23:14:34
  *  Email: lijunhong@fengmap.com
- *  LastEditTime: 2022-09-12 23:44:49
+ *  LastEditTime: 2022-09-15 00:15:08
  *  LastEditors: lijunhong
  *  LastEditorsEmail: lijunhong@fengmap.com
  *  Description:
@@ -38,6 +38,17 @@ class UserService {
       where: whereOpt,
     });
     return res?.dataValues ?? null;
+  }
+
+  async updateById({ id, user_name, password, is_admin }) {
+    let whereOpt = { id };
+    let newUser = {};
+    user_name && Object.assign(newUser, { user_name });
+    password && Object.assign(newUser, { password });
+    is_admin && Object.assign(newUser, { is_admin });
+
+    const res = await User.update(newUser, { where: whereOpt });
+    console.log(res);
   }
 }
 
