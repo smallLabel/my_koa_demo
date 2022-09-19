@@ -2,7 +2,7 @@
  *  Author: lijunhong
  *  Date: 2022-09-05 22:11:30
  *  Email: lijunhong@fengmap.com
- *  LastEditTime: 2022-09-15 11:27:38
+ *  LastEditTime: 2022-09-15 17:13:42
  *  LastEditors: lijunhong
  *  LastEditorsEmail: lijunhong@fengmap.com
  *  Description:
@@ -54,6 +54,16 @@ module.exports = {
   changePasswordError: {
     code: "10102",
     message: "修改密码失败",
+    result: "",
+  },
+  hasNotAdminPermissionError: {
+    code: "10103",
+    message: "没有管理员权限",
+    result: "",
+  },
+  fileUploadError: {
+    code: "10201",
+    message: "图片上传失败",
     result: "",
   },
 };

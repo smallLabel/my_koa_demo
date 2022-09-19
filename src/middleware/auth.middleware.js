@@ -2,7 +2,7 @@
  *  Author: lijunhong
  *  Date: 2022-09-13 12:17:43
  *  Email: lijunhong@fengmap.com
- *  LastEditTime: 2022-09-15 00:01:11
+ *  LastEditTime: 2022-09-15 16:55:26
  *  LastEditors: lijunhong
  *  LastEditorsEmail: lijunhong@fengmap.com
  *  Description:auth验证中间件
@@ -13,6 +13,7 @@ const { JWT_SECRET } = require("../config/config.default");
 const {
   tokenExpiredError,
   tokenInvalidError,
+  hasNotAdminPermissionError,
 } = require("../constant/err.type");
 const auth = async (ctx, next) => {
   const { authorization } = ctx.request.header;
@@ -36,6 +37,16 @@ const auth = async (ctx, next) => {
   await next();
 };
 
+const hasAdminPermission = async (ctx, next) => {
+  console.log(ctx.state.user);
+  const { is_admin } = ctx.state.user;
+  if (!is_admin) {
+    return ctx.app.emit("error", hasNotAdminPermissionError, ctx);
+  }
+  await next();
+};
+
 module.exports = {
   auth,
+  hasAdminPermission,
 };
